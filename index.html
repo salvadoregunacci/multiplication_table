@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    *{-webkit-box-sizing:border-box;box-sizing:border-box}body{background:-webkit-gradient(linear, left top, left bottom, from(#3d3d3d), to(#222222));background:linear-gradient(to bottom, #3d3d3d, #222222)}.wrap{height:97.9vh;width:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.exp{color:#fff;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;font-size:28px;font-family:sans-serif;border-bottom:4px solid #222;padding:10px 20px;border-radius:6px;background:#555;-webkit-column-gap:3px;-moz-column-gap:3px;column-gap:3px;-webkit-transition:.3s;transition:.3s;position:relative}.exp-alert{position:absolute;top:0;left:50%;font-size:16px;width:25px;height:25px;border:1px solid #fff;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;border-radius:50%;-webkit-transform:translate(-50%, -120%);-ms-transform:translate(-50%, -120%);transform:translate(-50%, -120%);pointer-events:none;opacity:0;-webkit-transition:.3s;transition:.3s}.exp-alert_success{color:#31c231;border-color:#31c231}.exp-alert_failed{color:red;border-color:red}.exp.success{background:#3c5f45}.exp.success .exp-alert_success{opacity:1}.exp.failed .exp-alert_failed{opacity:1}.exp__answer{height:32px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-left:3px}.exp__answer-input{display:inline-block;height:100%;background:none;color:#fff;font-size:24px;width:80px;border-radius:3px;padding:3px}.exp__answer-input:focus{outline:none;border-color:#079907;border-style:solid}.btn{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;border:none;outline:none;border-radius:3px;padding:6px 12px;cursor:pointer;-webkit-transition:-webkit-transform .3s;transition:-webkit-transform .3s;transition:transform .3s;transition:transform .3s, -webkit-transform .3s}.btn:focus{outline:3px solid #5ab95a}.check-btn{margin-top:25px;-webkit-column-gap:3px;-moz-column-gap:3px;column-gap:3px;background:#079907;color:#fff;font-size:16px}.check-btn:hover{background:#08a308}.check-btn:hover .icon{-webkit-transform:translateY(-1px) translateX(3px);-ms-transform:translateY(-1px) translateX(3px);transform:translateY(-1px) translateX(3px)}.check-btn .icon{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;-webkit-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);color:#046904;-webkit-transition:.3s;transition:.3s}.msg-box{display:none;margin-top:6px;font-family:sans-serif;color:#fff;font-size:14px}.msg-box.active{display:block}.msg[data-type=default]{color:#fff}.msg[data-type=success]{color:#31c231}.msg[data-type=failed]{color:red}.msg[data-type=warning]{color:#ebdb03}.burger{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;background:none;border:none;row-gap:4px;position:fixed;top:25px;left:25px;cursor:pointer;outline:none;z-index:3}.burger span{display:inline-block;width:30px;height:3px;background:#a5a5a5;-webkit-transition:.3s;transition:.3s;-webkit-transform-origin:center center;-ms-transform-origin:center center;transform-origin:center center}.burger:hover span{background:#31c231}.burger.active{row-gap:0px}.burger.active:hover span{background:red}.burger.active span:first-child{opacity:0}.burger.active span:nth-child(2){-webkit-transform:rotate(45deg) translateY(2px);-ms-transform:rotate(45deg) translateY(2px);transform:rotate(45deg) translateY(2px)}.burger.active span:nth-child(3){-webkit-transform:rotate(-45deg) translateY(-2px);-ms-transform:rotate(-45deg) translateY(-2px);transform:rotate(-45deg) translateY(-2px)}.table-wrap{position:fixed;top:0;left:0;height:100vh;background:#222;color:#fff;width:550px;padding:70px 28px 15px;-webkit-transform:translateX(-100%);-ms-transform:translateX(-100%);transform:translateX(-100%);-webkit-transition:.4s;transition:.4s;font-family:sans-serif;z-index:2;overflow-y:auto}.table-wrap .table{border-collapse:collapse;width:100%}.table-wrap td{padding:12px}.table-wrap td:not(:first-child){border-left:1px solid #5e5e5e}.table-wrap tr{border:1px solid #5e5e5e;background:#292929}.table-wrap tr:last-of-type{border-top:none}.table-wrap .op{color:#8f8f8f}.table-wrap .op_x{font-size:14px}.table-wrap .result{color:#31c231}.table-wrap .exp-wrap{display:inline-block;width:45px}.table-wrap .id{font-size:18px;color:#8f8f8f;margin-bottom:10px}.table-wrap.active{-webkit-transform:translateX(0);-ms-transform:translateX(0);transform:translateX(0)}#settings-btn{background:none;position:fixed;top:25px;right:25px;border:none;outline:none;cursor:pointer;-webkit-transition:.4s;transition:.4s;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}#settings-btn:hover{-webkit-transform:rotate(90deg);-ms-transform:rotate(90deg);transform:rotate(90deg)}#settings-btn:hover svg{fill:#31c231}#settings-btn svg{width:25px;height:25px;fill:#a5a5a5}#settings-wrap{position:fixed;top:0;right:0;background:#222;color:#fff;padding:15px;z-index:4;font-family:sans-serif;height:100vh;-webkit-transition:.4s;transition:.4s;-webkit-transform:translateX(calc(100% + 36px));-ms-transform:translateX(calc(100% + 36px));transform:translateX(calc(100% + 36px))}#settings-wrap.active{-webkit-transform:translateX(0);-ms-transform:translateX(0);transform:translateX(0)}.setting-wrap-close{position:absolute;left:0;top:5px;-webkit-transform:translateX(calc(-100% - 5px));-ms-transform:translateX(calc(-100% - 5px));transform:translateX(calc(-100% - 5px));width:30px;height:30px;font-size:20px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;cursor:pointer;color:red;border:1px solid red;background:rgba(0,0,0,0);-webkit-transition:.3s;transition:.3s;border-radius:4px;z-index:5}.setting-wrap-close .txt{display:none;font-size:18px}.setting-wrap-close:hover{background:rgba(255,0,0,.15)}.setting-wrap-close span{-webkit-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px)}.settings-fields{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-column-gap:6px;-moz-column-gap:6px;column-gap:6px}.settings-fields.range{margin-top:12px}.settings-fields.range select{width:50px;height:24px;padding:2px;background:#616161;color:#fff;border-radius:3px}.settings-title{font-size:14px}.settings-field label{font-size:14px;color:#8f8f8f}@media(max-width: 550px){.table-wrap{width:100%}.table-wrap tr{border:1px solid #5e5e5e;display:grid;grid-template-columns:repeat(2, 1fr);-ms-flex-wrap:wrap;flex-wrap:wrap}.table-wrap tr{border-bottom:none}.table-wrap td:not(:first-child){border-left:none}.table-wrap tr td{border-bottom:1px solid #5e5e5e;border-left:none}}@media(max-width: 490px){.wrap{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}#exp{margin-top:250px}.exp__answer-input{height:42px}#msg{font-size:16px}#check-answer-btn{height:46px;position:fixed;bottom:60px;left:50%;width:90%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%)}#settings-wrap{padding-top:35px}.settings-fields.range select{width:70px;height:36px}.setting-wrap-close{height:42px;top:auto;left:50%;bottom:60px;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);width:90%}.setting-wrap-close .txt{display:inline-block}}@media(max-width: 430px){#settings-wrap{width:100%}}
+  </style>
+
+  <title>Перевірка таблиці множення</title>
+</head>
+
+<body>
+  <div id="table-wrap" class="table-wrap">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>
+            <div class="id">2</div>
+            <div class="table-exp"><span class="exp-wrap">2 <span class="op op_x">x</span> 2</span> <span
+                class="op op_equal">=</span> <span class="result">4</span></div>
+            <div class="table-exp"><span class="exp-wrap">2 <span class="op op_x">x</span> 3</span> <span
+                class="op op_equal">=</span> <span class="result">6</span></div>
+            <div class="table-exp"><span class="exp-wrap">2 <span class="op op_x">x</span> 4</span> <span
+                class="op op_equal">=</span> <span class="result">8</span></div>
+            <div class="table-exp"><span class="exp-wrap">2 <span class="op op_x">x</span> 5</span> <span
+                class="op op_equal">=</span> <span class="result">10</span></div>
+            <div class="table-exp"><span class="exp-wrap">2 <span class="op op_x">x</span> 6</span> <span
+                class="op op_equal">=</span> <span class="result">12</span></div>
+            <div class="table-exp"><span class="exp-wrap">2 <span class="op op_x">x</span> 7</span> <span
+                class="op op_equal">=</span> <span class="result">14</span></div>
+            <div class="table-exp"><span class="exp-wrap">2 <span class="op op_x">x</span> 8</span> <span
+                class="op op_equal">=</span> <span class="result">16</span></div>
+            <div class="table-exp"><span class="exp-wrap">2 <span class="op op_x">x</span> 9</span> <span
+                class="op op_equal">=</span> <span class="result">18</span></div>
+            <div class="table-exp"><span class="exp-wrap">2 <span class="op op_x">x</span> 10</span> <span
+                class="op op_equal">=</span> <span class="result">20</span></div>
+          </td>
+          <td>
+            <div class="id">3</div>
+            <div class="table-exp"><span class="exp-wrap">3 <span class="op op_x">x</span> 2</span> <span
+                class="op op_equal">=</span> <span class="result">6</span></div>
+            <div class="table-exp"><span class="exp-wrap">3 <span class="op op_x">x</span> 3</span> <span
+                class="op op_equal">=</span> <span class="result">9</span></div>
+            <div class="table-exp"><span class="exp-wrap">3 <span class="op op_x">x</span> 4</span> <span
+                class="op op_equal">=</span> <span class="result">12</span></div>
+            <div class="table-exp"><span class="exp-wrap">3 <span class="op op_x">x</span> 5</span> <span
+                class="op op_equal">=</span> <span class="result">15</span></div>
+            <div class="table-exp"><span class="exp-wrap">3 <span class="op op_x">x</span> 6</span> <span
+                class="op op_equal">=</span> <span class="result">18</span></div>
+            <div class="table-exp"><span class="exp-wrap">3 <span class="op op_x">x</span> 7</span> <span
+                class="op op_equal">=</span> <span class="result">21</span></div>
+            <div class="table-exp"><span class="exp-wrap">3 <span class="op op_x">x</span> 8</span> <span
+                class="op op_equal">=</span> <span class="result">24</span></div>
+            <div class="table-exp"><span class="exp-wrap">3 <span class="op op_x">x</span> 9</span> <span
+                class="op op_equal">=</span> <span class="result">27</span></div>
+            <div class="table-exp"><span class="exp-wrap">3 <span class="op op_x">x</span> 10</span> <span
+                class="op op_equal">=</span> <span class="result">30</span></div>
+          </td>
+          <td>
+            <div class="id">4</div>
+            <div class="table-exp"><span class="exp-wrap">4 <span class="op op_x">x</span> 2</span> <span
+                class="op op_equal">=</span> <span class="result">8</span></div>
+            <div class="table-exp"><span class="exp-wrap">4 <span class="op op_x">x</span> 3</span> <span
+                class="op op_equal">=</span> <span class="result">12</span></div>
+            <div class="table-exp"><span class="exp-wrap">4 <span class="op op_x">x</span> 4</span> <span
+                class="op op_equal">=</span> <span class="result">16</span></div>
+            <div class="table-exp"><span class="exp-wrap">4 <span class="op op_x">x</span> 5</span> <span
+                class="op op_equal">=</span> <span class="result">20</span></div>
+            <div class="table-exp"><span class="exp-wrap">4 <span class="op op_x">x</span> 6</span> <span
+                class="op op_equal">=</span> <span class="result">24</span></div>
+            <div class="table-exp"><span class="exp-wrap">4 <span class="op op_x">x</span> 7</span> <span
+                class="op op_equal">=</span> <span class="result">28</span></div>
+            <div class="table-exp"><span class="exp-wrap">4 <span class="op op_x">x</span> 8</span> <span
+                class="op op_equal">=</span> <span class="result">32</span></div>
+            <div class="table-exp"><span class="exp-wrap">4 <span class="op op_x">x</span> 9</span> <span
+                class="op op_equal">=</span> <span class="result">36</span></div>
+            <div class="table-exp"><span class="exp-wrap">4 <span class="op op_x">x</span> 10</span> <span
+                class="op op_equal">=</span> <span class="result">40</span></div>
+          </td>
+          <td>
+            <div class="id">5</div>
+            <div class="table-exp"><span class="exp-wrap">5 <span class="op op_x">x</span> 2</span> <span
+                class="op op_equal">=</span> <span class="result">10</span></div>
+            <div class="table-exp"><span class="exp-wrap">5 <span class="op op_x">x</span> 3</span> <span
+                class="op op_equal">=</span> <span class="result">15</span></div>
+            <div class="table-exp"><span class="exp-wrap">5 <span class="op op_x">x</span> 4</span> <span
+                class="op op_equal">=</span> <span class="result">20</span></div>
+            <div class="table-exp"><span class="exp-wrap">5 <span class="op op_x">x</span> 5</span> <span
+                class="op op_equal">=</span> <span class="result">25</span></div>
+            <div class="table-exp"><span class="exp-wrap">5 <span class="op op_x">x</span> 6</span> <span
+                class="op op_equal">=</span> <span class="result">30</span></div>
+            <div class="table-exp"><span class="exp-wrap">5 <span class="op op_x">x</span> 7</span> <span
+                class="op op_equal">=</span> <span class="result">35</span></div>
+            <div class="table-exp"><span class="exp-wrap">5 <span class="op op_x">x</span> 8</span> <span
+                class="op op_equal">=</span> <span class="result">40</span></div>
+            <div class="table-exp"><span class="exp-wrap">5 <span class="op op_x">x</span> 9</span> <span
+                class="op op_equal">=</span> <span class="result">45</span></div>
+            <div class="table-exp"><span class="exp-wrap">5 <span class="op op_x">x</span> 10</span> <span
+                class="op op_equal">=</span> <span class="result">50</span></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="id">6</div>
+            <div class="table-exp"><span class="exp-wrap">6 <span class="op op_x">x</span> 2</span> <span
+                class="op op_equal">=</span> <span class="result">12</span></div>
+            <div class="table-exp"><span class="exp-wrap">6 <span class="op op_x">x</span> 3</span> <span
+                class="op op_equal">=</span> <span class="result">18</span></div>
+            <div class="table-exp"><span class="exp-wrap">6 <span class="op op_x">x</span> 4</span> <span
+                class="op op_equal">=</span> <span class="result">24</span></div>
+            <div class="table-exp"><span class="exp-wrap">6 <span class="op op_x">x</span> 5</span> <span
+                class="op op_equal">=</span> <span class="result">30</span></div>
+            <div class="table-exp"><span class="exp-wrap">6 <span class="op op_x">x</span> 6</span> <span
+                class="op op_equal">=</span> <span class="result">36</span></div>
+            <div class="table-exp"><span class="exp-wrap">6 <span class="op op_x">x</span> 7</span> <span
+                class="op op_equal">=</span> <span class="result">42</span></div>
+            <div class="table-exp"><span class="exp-wrap">6 <span class="op op_x">x</span> 8</span> <span
+                class="op op_equal">=</span> <span class="result">48</span></div>
+            <div class="table-exp"><span class="exp-wrap">6 <span class="op op_x">x</span> 9</span> <span
+                class="op op_equal">=</span> <span class="result">54</span></div>
+            <div class="table-exp"><span class="exp-wrap">6 <span class="op op_x">x</span> 10</span> <span
+                class="op op_equal">=</span> <span class="result">60</span></div>
+          </td>
+          <td>
+            <div class="id">7</div>
+            <div class="table-exp"><span class="exp-wrap">7 <span class="op op_x">x</span> 2</span> <span
+                class="op op_equal">=</span> <span class="result">14</span></div>
+            <div class="table-exp"><span class="exp-wrap">7 <span class="op op_x">x</span> 3</span> <span
+                class="op op_equal">=</span> <span class="result">21</span></div>
+            <div class="table-exp"><span class="exp-wrap">7 <span class="op op_x">x</span> 4</span> <span
+                class="op op_equal">=</span> <span class="result">28</span></div>
+            <div class="table-exp"><span class="exp-wrap">7 <span class="op op_x">x</span> 5</span> <span
+                class="op op_equal">=</span> <span class="result">35</span></div>
+            <div class="table-exp"><span class="exp-wrap">7 <span class="op op_x">x</span> 6</span> <span
+                class="op op_equal">=</span> <span class="result">42</span></div>
+            <div class="table-exp"><span class="exp-wrap">7 <span class="op op_x">x</span> 7</span> <span
+                class="op op_equal">=</span> <span class="result">49</span></div>
+            <div class="table-exp"><span class="exp-wrap">7 <span class="op op_x">x</span> 8</span> <span
+                class="op op_equal">=</span> <span class="result">56</span></div>
+            <div class="table-exp"><span class="exp-wrap">7 <span class="op op_x">x</span> 9</span> <span
+                class="op op_equal">=</span> <span class="result">63</span></div>
+            <div class="table-exp"><span class="exp-wrap">7 <span class="op op_x">x</span> 10</span> <span
+                class="op op_equal">=</span> <span class="result">70</span></div>
+          </td>
+          <td>
+            <div class="id">8</div>
+            <div class="table-exp"><span class="exp-wrap">8 <span class="op op_x">x</span> 2</span> <span
+                class="op op_equal">=</span> <span class="result">16</span></div>
+            <div class="table-exp"><span class="exp-wrap">8 <span class="op op_x">x</span> 3</span> <span
+                class="op op_equal">=</span> <span class="result">24</span></div>
+            <div class="table-exp"><span class="exp-wrap">8 <span class="op op_x">x</span> 4</span> <span
+                class="op op_equal">=</span> <span class="result">32</span></div>
+            <div class="table-exp"><span class="exp-wrap">8 <span class="op op_x">x</span> 5</span> <span
+                class="op op_equal">=</span> <span class="result">40</span></div>
+            <div class="table-exp"><span class="exp-wrap">8 <span class="op op_x">x</span> 6</span> <span
+                class="op op_equal">=</span> <span class="result">48</span></div>
+            <div class="table-exp"><span class="exp-wrap">8 <span class="op op_x">x</span> 7</span> <span
+                class="op op_equal">=</span> <span class="result">56</span></div>
+            <div class="table-exp"><span class="exp-wrap">8 <span class="op op_x">x</span> 8</span> <span
+                class="op op_equal">=</span> <span class="result">64</span></div>
+            <div class="table-exp"><span class="exp-wrap">8 <span class="op op_x">x</span> 9</span> <span
+                class="op op_equal">=</span> <span class="result">72</span></div>
+            <div class="table-exp"><span class="exp-wrap">8 <span class="op op_x">x</span> 10</span> <span
+                class="op op_equal">=</span> <span class="result">80</span></div>
+          </td>
+          <td>
+            <div class="id">9</div>
+            <div class="table-exp"><span class="exp-wrap">9 <span class="op op_x">x</span> 2</span> <span
+                class="op op_equal">=</span> <span class="result">18</span></div>
+            <div class="table-exp"><span class="exp-wrap">9 <span class="op op_x">x</span> 3</span> <span
+                class="op op_equal">=</span> <span class="result">27</span></div>
+            <div class="table-exp"><span class="exp-wrap">9 <span class="op op_x">x</span> 4</span> <span
+                class="op op_equal">=</span> <span class="result">36</span></div>
+            <div class="table-exp"><span class="exp-wrap">9 <span class="op op_x">x</span> 5</span> <span
+                class="op op_equal">=</span> <span class="result">45</span></div>
+            <div class="table-exp"><span class="exp-wrap">9 <span class="op op_x">x</span> 6</span> <span
+                class="op op_equal">=</span> <span class="result">54</span></div>
+            <div class="table-exp"><span class="exp-wrap">9 <span class="op op_x">x</span> 7</span> <span
+                class="op op_equal">=</span> <span class="result">63</span></div>
+            <div class="table-exp"><span class="exp-wrap">9 <span class="op op_x">x</span> 8</span> <span
+                class="op op_equal">=</span> <span class="result">72</span></div>
+            <div class="table-exp"><span class="exp-wrap">9 <span class="op op_x">x</span> 9</span> <span
+                class="op op_equal">=</span> <span class="result">81</span></div>
+            <div class="table-exp"><span class="exp-wrap">9 <span class="op op_x">x</span> 10</span> <span
+                class="op op_equal">=</span> <span class="result">90</span></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="settings-wrap">
+    <button id="settings-close" class="setting-wrap-close">
+      <span>
+        <span class="txt">Закрити</span>
+        <span>✖</span>
+      </span>
+    </button>
+
+    <div class="settings-row">
+      <div class="settings-title">Діапазон чисел, що перевірятимуться:</div>
+      <div class="settings-fields range">
+        <div class="settings-field">
+          <label for="settings-select-to">від</label>
+          <select class="settings-select from" id="settings-select-from">
+            <option value="" selected>-</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+          </select>
+        </div>
+        <div class="settings-field">
+          <label fro="settings-select-to">до</label>
+          <select class="settings-select to" id="settings-select-to">
+            <option value="" selected>-</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="burger" id="table-controller">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <button id="settings-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50px" height="50px">
+      <path
+        d="M47.16,21.221l-5.91-0.966c-0.346-1.186-0.819-2.326-1.411-3.405l3.45-4.917c0.279-0.397,0.231-0.938-0.112-1.282 l-3.889-3.887c-0.347-0.346-0.893-0.391-1.291-0.104l-4.843,3.481c-1.089-0.602-2.239-1.08-3.432-1.427l-1.031-5.886 C28.607,2.35,28.192,2,27.706,2h-5.5c-0.49,0-0.908,0.355-0.987,0.839l-0.956,5.854c-1.2,0.345-2.352,0.818-3.437,1.412l-4.83-3.45 c-0.399-0.285-0.942-0.239-1.289,0.106L6.82,10.648c-0.343,0.343-0.391,0.883-0.112,1.28l3.399,4.863 c-0.605,1.095-1.087,2.254-1.438,3.46l-5.831,0.971c-0.482,0.08-0.836,0.498-0.836,0.986v5.5c0,0.485,0.348,0.9,0.825,0.985 l5.831,1.034c0.349,1.203,0.831,2.362,1.438,3.46l-3.441,4.813c-0.284,0.397-0.239,0.942,0.106,1.289l3.888,3.891 c0.343,0.343,0.884,0.391,1.281,0.112l4.87-3.411c1.093,0.601,2.248,1.078,3.445,1.424l0.976,5.861C21.3,47.647,21.717,48,22.206,48 h5.5c0.485,0,0.9-0.348,0.984-0.825l1.045-5.89c1.199-0.353,2.348-0.833,3.43-1.435l4.905,3.441 c0.398,0.281,0.938,0.232,1.282-0.111l3.888-3.891c0.346-0.347,0.391-0.894,0.104-1.292l-3.498-4.857 c0.593-1.08,1.064-2.222,1.407-3.408l5.918-1.039c0.479-0.084,0.827-0.5,0.827-0.985v-5.5C47.999,21.718,47.644,21.3,47.16,21.221z M25,32c-3.866,0-7-3.134-7-7c0-3.866,3.134-7,7-7s7,3.134,7,7C32,28.866,28.866,32,25,32z" />
+    </svg>
+  </button>
+
+  <div class="wrap">
+    <div id="exp" class="exp">
+      <div class="exp-alert exp-alert_success">✔</div>
+      <div class="exp-alert exp-alert_failed">✖</div>
+      <div id="exp-val-1" class="exp__value exp__value_1">10</div>
+      <div id="exp-operator" class="exp__op">*</div>
+      <div id="exp-val-2" class="exp__value exp__value_2">2</div>
+      <div class="exp__op">=</div>
+      <div class="exp__answer">
+        <input tabindex="0" id="answer-input" class="exp__answer-input" type="text">
+      </div>
+    </div>
+
+    <div id="msg-box" class="msg-box">
+      <div id="msg" class="msg"></div>
+    </div>
+
+    <button id="check-answer-btn" type="button" class="btn check-btn" tabindex="1">
+      <span class="content">Перевірити</span>
+      <span class="icon">&raquo;</span>
+    </button>
+  </div>
+
+  <script>
+    const STATUSES = {
+      default: "default",
+      success: "success",
+      warning: "warning",
+      failed: "failed",
+    }
+
+    const $exp = document.querySelector('#exp');
+    const $answerInput = document.querySelector('#answer-input');
+    const $expValue1 = document.querySelector('#exp-val-1');
+    const $expOperator = document.querySelector('#exp-operator');
+    const $expValue2 = document.querySelector('#exp-val-2');
+    const $msgBox = document.querySelector('#msg-box');
+    const $msg = document.querySelector('#msg');
+    const $checkBtn = document.querySelector('#check-answer-btn');
+    const $tableBurger = document.querySelector('#table-controller');
+    const $tableBar = document.querySelector('#table-wrap');
+    const $settingsBar = document.querySelector('#settings-wrap');
+    const $settingsBtn = document.querySelector('#settings-btn');
+    const $settingsCloseBtn = document.querySelector('#settings-close');
+    const $rangeFrom = document.querySelector('#settings-select-from');
+    const $rangeTo = document.querySelector('#settings-select-to');
+
+    let answer = null;
+
+    $rangeFrom?.addEventListener("change", onChangeRange);
+    $rangeTo?.addEventListener("change", onChangeRange);
+    $answerInput?.addEventListener("input", onInputAnser);
+    $checkBtn?.addEventListener("click", onCheckAnswer);
+    $tableBurger?.addEventListener("click", onClickTableBurger);
+    $settingsBtn?.addEventListener("click", onClickSettings);
+    $settingsCloseBtn?.addEventListener("click", onClickSettings);
+    document.addEventListener("keydown", onKeyDown);
+
+
+    function onChangeRange() {
+      setRandomExpression();
+    }
+
+    function onClickSettings() {
+      if (!$settingsBar) return;
+
+      if ($settingsBar.classList.contains("active")) {
+        close();
+      } else {
+        $settingsBar.classList.add("active");
+        document.addEventListener("click", onClickOver);
+      }
+
+
+      function close() {
+        $settingsBar.classList.remove("active");
+        document.removeEventListener("click", onClickOver);
+      }
+
+      function onClickOver(e) {
+        if (e.target.closest("#settings-btn")) return;
+
+        if (!e.target.closest("#settings-wrap")) {
+          close();
+        }
+      }
+    }
+
+    function onClickTableBurger() {
+      $tableBar?.classList.toggle("active");
+      $tableBurger?.classList.toggle("active");
+    }
+
+    function onKeyDown(e) {
+      if (e.code === "Enter") {
+        onCheckAnswer();
+      }
+
+      if (e.code === "Escape") {
+        $settingsBar?.classList.remove("active");
+        $tableBar?.classList.remove("active");
+        $tableBurger?.classList.remove("active");
+      }
+    }
+
+    function onCheckAnswer() {
+      const val = $answerInput.value;
+
+      if (val.length <= 0) {
+        showMsg("Введіть відповідь");
+        $answerInput.focus();
+        return;
+      }
+
+      if (+val === answer) {
+        setAnswerAnim();
+        setRandomExpression();
+      } else {
+        showMsg("Невірно", STATUSES.failed);
+        setAnswerAnim(STATUSES.failed);
+      }
+
+      $answerInput.value = "";
+      $answerInput.focus();
+    }
+
+    function onInputAnser(e) {
+      $answerInput.value = e.target.value.replace(/\D/g, "");
+      hideMsg();
+    }
+
+    function showMsg(msg, type = STATUSES.default) {
+      if ($msgBox && $msg) {
+        $msg.textContent = msg;
+        $msg.setAttribute("data-type", type);
+        $msgBox.classList.add("active");
+      }
+
+    }
+
+    function hideMsg() {
+      if ($msgBox && $msg) {
+        $msgBox.classList.remove("active");
+        $msg.setAttribute("data-type", STATUSES.default);
+      }
+    }
+
+    function setRandomExpression(operator = "*", min = 1, max = 10) {
+      if (!($expValue1 && $expValue2 && $expOperator)) return;
+
+      const value1 = randomInt($rangeFrom?.value.length ? +$rangeFrom.value : min, $rangeTo?.value.length ? +$rangeTo.value : $rangeFrom?.value.length ? 9 : max);
+      const value2 = randomInt(min, max);
+
+      if (operator === null) {
+        operator = ["+", "-", "*", "/"][randomInt(0, 3)];
+      }
+
+      $expValue1.textContent = value1;
+      $expValue2.textContent = value2;
+      $expOperator.textContent = operator;
+
+      answer = eval(value1 + operator + value2);
+    }
+
+    function randomInt(min, max) {
+      let rand = min + Math.random() * (max + 1 - min);
+      return Math.floor(rand);
+    }
+
+    function setAnswerAnim(type = STATUSES.success) {
+      $exp?.classList.add(type);
+
+      setTimeout(() => {
+        $exp?.classList.remove(type);
+      }, 400);
+    }
+
+    setRandomExpression();
+  </script>
+</body>
+
+</html>
